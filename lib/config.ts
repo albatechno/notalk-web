@@ -45,7 +45,15 @@ export type Show = {
 
 export const SHOWS: Show[] = [];
 
-export const VIDEO_SETS = [
+export type VideoSet = {
+  id: string;
+  title: string;
+  description: string;
+  embedId: string;
+  comingSoon?: boolean;
+};
+
+export const VIDEO_SETS: VideoSet[] = [
   {
     id: "set-01",
     title: "Die Hexe — Set",
