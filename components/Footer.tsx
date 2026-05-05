@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LINKS } from "@/lib/config";
 
 const SOCIALS = [
@@ -18,12 +19,13 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <p
-            className="text-xs tracking-[0.15em] uppercase"
-            style={{ color: "rgba(255,255,255,0.25)" }}
-          >
-            NoTalk — Techno duo / DJs / Producers
-          </p>
+          <Image
+            src="/NTK.svg"
+            alt="NoTalk"
+            width={48}
+            height={36}
+            style={{ opacity: 0.3 }}
+          />
 
           <nav className="flex items-center gap-6 flex-wrap">
             {SOCIALS.map((s) => (
@@ -32,8 +34,7 @@ export default function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs tracking-[0.15em] uppercase transition-colors duration-300"
-                style={{ color: "rgba(255,255,255,0.25)" }}
+                className="text-xs tracking-[0.15em] uppercase transition-colors duration-300 text-white/25 hover:text-white"
               >
                 {s.label}
               </a>

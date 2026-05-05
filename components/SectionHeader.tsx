@@ -16,8 +16,13 @@ export default function SectionHeader({ label, title, description }: SectionHead
         </p>
       )}
       <h2
-        className="text-4xl md:text-5xl font-bold leading-none tracking-tight mb-4"
-        style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
+        className="leading-none mb-4"
+        style={{
+          fontFamily: "var(--font-bebas)",
+          fontSize: "clamp(3.5rem, 8vw, 7rem)",
+          color: "#F2F2F2",
+          letterSpacing: "0.01em",
+        }}
       >
         {title}
       </h2>

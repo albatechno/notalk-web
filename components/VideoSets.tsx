@@ -1,3 +1,4 @@
+import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import { LINKS, VIDEO_SETS } from "@/lib/config";
@@ -10,11 +11,13 @@ function VideoCard({
   title,
   description,
   embedId,
+  comingSoon,
   index,
 }: {
   title: string;
   description: string;
   embedId: string;
+  comingSoon?: boolean;
   index: number;
 }) {
   const real = isRealEmbedId(embedId);
@@ -38,45 +41,60 @@ function VideoCard({
               className="absolute inset-0 w-full h-full"
               loading="lazy"
             />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div
-                className="w-14 h-14 flex items-center justify-center mb-4 transition-colors duration-300 group-hover:border-white/30"
-                style={{
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  borderRadius: "50%",
-                }}
-              >
-                <div
-                  className="ml-1"
-                  style={{
-                    width: 0,
-                    height: 0,
-                    borderTop: "8px solid transparent",
-                    borderBottom: "8px solid transparent",
-                    borderLeft: "14px solid rgba(255,255,255,0.35)",
-                  }}
-                />
+          ) : comingSoon ? (
+            <>
+              <Image
+                src={`https://picsum.photos/seed/ntkvid3/1600/900`}
+                alt=""
+                fill
+                className="object-cover grayscale brightness-50 contrast-[1.1]"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p
+                  className="text-xs tracking-[0.25em] uppercase"
+                  style={{ color: "rgba(255,255,255,0.35)" }}
+                >
+                  Coming Soon
+                </p>
               </div>
-              <p
-                className="text-xs tracking-[0.2em] uppercase"
-                style={{ color: "rgba(255,255,255,0.2)" }}
-              >
-                Add embed ID in config
-              </p>
-            </div>
+            </>
+          ) : (
+            <>
+              <Image
+                src={`https://picsum.photos/seed/ntkvid${index + 1}/1600/900?grayscale`}
+                alt=""
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                style={{ filter: "brightness(0.35) contrast(1.15)" }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </>
           )}
         </div>
 
         <div className="pt-5 pb-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p
-                className="text-xs tracking-[0.2em] uppercase mb-2"
-                style={{ color: "#9A9A9A" }}
-              >
-                Set {String(index + 1).padStart(2, "0")}
-              </p>
+              <div className="flex items-center gap-3 mb-2">
+                <p
+                  className="text-xs tracking-[0.2em] uppercase"
+                  style={{ color: "#9A9A9A" }}
+                >
+                  Set {String(index + 1).padStart(2, "0")}
+                </p>
+                {comingSoon && (
+                  <span
+                    className="text-[0.6rem] tracking-[0.2em] uppercase px-2 py-0.5"
+                    style={{
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: "#9A9A9A",
+                    }}
+                  >
+                    Soon
+                  </span>
+                )}
+              </div>
               <h3
                 className="text-lg font-semibold tracking-tight mb-2"
                 style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
@@ -88,15 +106,17 @@ function VideoCard({
               </p>
             </div>
 
-            <a
-              href={LINKS.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/watch shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-medium mt-1 text-muted hover:text-foreground transition-colors duration-300"
-            >
-              Watch
-              <span className="block h-px w-4 bg-current transition-all duration-300 group-hover/watch:w-7" />
-            </a>
+            {!comingSoon && (
+              <a
+                href={LINKS.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/watch shrink-0 inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-medium mt-1 text-muted hover:text-foreground transition-colors duration-300"
+              >
+                Watch
+                <span className="block h-px w-4 bg-current transition-all duration-300 group-hover/watch:w-7" />
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -127,6 +147,7 @@ export default function VideoSets() {
               title={set.title}
               description={set.description}
               embedId={set.embedId}
+              comingSoon={set.comingSoon}
               index={i}
             />
           ))}

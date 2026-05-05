@@ -2,6 +2,11 @@ import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import { LINKS } from "@/lib/config";
 
+const SC_EMBED =
+  "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/timeless-879656477/seduceme" +
+  "&visual=true&auto_play=false&color=%23ffffff&hide_related=true" +
+  "&show_comments=false&show_user=false&show_reposts=false&show_teaser=false";
+
 export default function SoundLinks() {
   return (
     <section
@@ -24,7 +29,7 @@ export default function SoundLinks() {
         >
           <FadeIn delay={100}>
             <div
-              className="p-8 md:p-10 flex flex-col justify-between min-h-[280px] transition-colors duration-300 hover:bg-[#111111]"
+              className="p-8 md:p-10 flex flex-col justify-between transition-colors duration-300 hover:bg-[#111111]"
               style={{ background: "#0B0B0B" }}
             >
               <div>
@@ -40,9 +45,20 @@ export default function SoundLinks() {
                 >
                   SoundCloud
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#9A9A9A" }}>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "#9A9A9A" }}>
                   Listen to selected tracks, demos and sonic experiments.
                 </p>
+
+                <iframe
+                  width="100%"
+                  height="200"
+                  scrolling="no"
+                  frameBorder="no"
+                  allow="autoplay"
+                  src={SC_EMBED}
+                  className="w-full"
+                  style={{ border: "none" }}
+                />
               </div>
 
               <a
@@ -91,16 +107,13 @@ export default function SoundLinks() {
                 </p>
               </div>
 
-              <span
-                className="inline-flex items-center gap-3 mt-8 text-xs tracking-[0.2em] uppercase font-medium"
-                style={{ color: "#9A9A9A" }}
+              <a
+                href={LINKS.bandcamp}
+                className="group inline-flex items-center gap-3 mt-8 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
               >
-                Coming Soon
-                <span
-                  className="block h-px w-6"
-                  style={{ background: "#9A9A9A" }}
-                />
-              </span>
+                Open Bandcamp
+                <span className="block h-px w-6 bg-foreground transition-all duration-300 group-hover:w-10" />
+              </a>
             </div>
           </FadeIn>
         </div>

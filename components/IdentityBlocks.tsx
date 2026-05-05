@@ -39,10 +39,12 @@ export default function IdentityBlocks() {
           </p>
         </FadeIn>
 
-        {/* gap-px with background creates hairline grid lines */}
         <div
           className="grid grid-cols-2 lg:grid-cols-4 gap-px"
-          style={{ background: "rgba(255,255,255,0.08)", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+          }}
         >
           {BLOCKS.map((block, i) => (
             <FadeIn key={block.number} delay={i * 80}>
@@ -51,17 +53,19 @@ export default function IdentityBlocks() {
                 style={{ background: "#0B0B0B" }}
               >
                 <p
-                  className="text-xs tracking-[0.2em] mb-6"
-                  style={{
-                    color: "rgba(255,255,255,0.18)",
-                    fontFamily: "var(--font-syne)",
-                  }}
+                  className="text-xs tracking-[0.2em] mb-4"
+                  style={{ color: "rgba(255,255,255,0.18)", fontFamily: "var(--font-syne)" }}
                 >
                   {block.number}
                 </p>
                 <h3
-                  className="text-xl md:text-2xl font-bold tracking-tight mb-3"
-                  style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
+                  className="leading-none mb-4"
+                  style={{
+                    fontFamily: "var(--font-bebas)",
+                    fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                    color: "#F2F2F2",
+                    letterSpacing: "0.02em",
+                  }}
                 >
                   {block.title}
                 </h3>

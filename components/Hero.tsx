@@ -93,18 +93,25 @@ export default function Hero() {
           Techno / DJs / Producers
         </p>
 
-        <h1
-          className="font-extrabold leading-none tracking-[-0.025em] mb-8"
-          style={{
-            fontFamily: "var(--font-syne)",
-            fontSize: "clamp(5.5rem, 18vw, 14rem)",
-            color: "#F2F2F2",
-          }}
-        >
-          NoTalk
-        </h1>
+        {/* 3D perspective container — Plastikman technique */}
+        <div style={{ perspective: "1000px", perspectiveOrigin: "0% 60%" }}>
+          <h1
+            style={{
+              fontFamily: "var(--font-bebas)",
+              fontSize: "clamp(6.5rem, 22vw, 18rem)",
+              color: "#F2F2F2",
+              lineHeight: 0.9,
+              letterSpacing: "-0.01em",
+              transformStyle: "preserve-3d",
+              animation: "depth-breathe 10s ease-in-out infinite",
+              display: "block",
+            }}
+          >
+            NoTalk
+          </h1>
+        </div>
 
-        <div className="max-w-2xl">
+        <div className="max-w-2xl mt-8">
           <p
             className="text-lg md:text-xl font-light leading-relaxed mb-4"
             style={{ color: "#F2F2F2" }}
@@ -148,9 +155,7 @@ export default function Hero() {
 
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{
-          background: "linear-gradient(to bottom, transparent, #050505)",
-        }}
+        style={{ background: "linear-gradient(to bottom, transparent, #050505)" }}
         aria-hidden="true"
       />
     </section>

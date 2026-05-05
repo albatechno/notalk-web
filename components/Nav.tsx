@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/config";
 
@@ -30,12 +31,8 @@ export default function Nav() {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
-        <a
-          href="#home"
-          className="text-sm font-bold tracking-[0.15em] uppercase text-foreground hover:text-muted transition-colors duration-300"
-          style={{ fontFamily: "var(--font-syne)" }}
-        >
-          NoTalk
+        <a href="#home" className="flex items-center opacity-90 hover:opacity-100 transition-opacity duration-300">
+          <Image src="/NTK.svg" alt="NoTalk" width={42} height={32} priority />
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
