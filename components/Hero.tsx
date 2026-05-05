@@ -70,6 +70,28 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "#050505" }}
     >
+      {/* Video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/notalk-poster.jpg"
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.45, transform: "scale(1.35)", filter: "blur(2px)" }}
+      >
+        <source src="/notalk-video.webm" type="video/webm" />
+        <source src="/notalk-video.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay over video */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "rgba(5,5,5,0.55)" }}
+        aria-hidden="true"
+      />
+
       <canvas
         ref={canvasRef}
         aria-hidden="true"
