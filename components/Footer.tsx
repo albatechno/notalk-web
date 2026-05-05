@@ -24,7 +24,7 @@ export default function Footer() {
             alt="NoTalk"
             width={48}
             height={36}
-            style={{ opacity: 0.3 }}
+            className="opacity-30 hover:opacity-100 transition-opacity duration-300"
           />
 
           <nav className="flex items-center gap-6 flex-wrap">
