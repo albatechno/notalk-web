@@ -1,5 +1,6 @@
 import FadeIn from "@/components/FadeIn";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import CalendlyModal from "@/components/CalendlyModal";
 import { LINKS } from "@/lib/config";
 
 const SOCIALS = [
@@ -24,10 +25,23 @@ export default function Contact() {
 
         {/* Live photo strip */}
         <FadeIn>
-          <div className="grid grid-cols-3 gap-3 mb-20">
+          {/* desktop */}
+          <div className="hidden md:grid grid-cols-3 gap-3 mb-20">
             {[20, 21, 22].map((seed) => (
               <ImagePlaceholder key={seed} seed={seed} width={1600} height={900} className="aspect-video w-full" />
             ))}
+          </div>
+          {/* mobile horizontal scroll */}
+          <div
+            className="flex md:hidden gap-3 mb-16 overflow-x-auto"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {[20, 21, 22].map((seed) => (
+              <div key={seed} className="shrink-0 w-[78vw]">
+                <ImagePlaceholder seed={seed} width={1600} height={900} className="aspect-video w-full" />
+              </div>
+            ))}
+            <div className="shrink-0 w-6" aria-hidden="true" />
           </div>
         </FadeIn>
 
@@ -68,14 +82,7 @@ export default function Contact() {
                   <span className="block h-px w-8 bg-current transition-all duration-300 group-hover:w-14" />
                 </a>
 
-                <a
-                  href={LINKS.calendly}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 border border-foreground text-foreground hover:bg-foreground hover:text-background self-start"
-                >
-                  Schedule a call
-                </a>
+                <CalendlyModal url={LINKS.calendly} />
               </div>
             </FadeIn>
           </div>
