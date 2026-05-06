@@ -21,8 +21,23 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (open) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY) * -1);
+    }
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+    };
   }, [open]);
 
   const close = () => setOpen(false);
@@ -39,7 +54,7 @@ export default function Nav() {
             : "1px solid transparent",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between" style={{ height: "calc(3.5rem + env(safe-area-inset-top))", paddingTop: "env(safe-area-inset-top)" }}>
           <a href="#home" onClick={close} className="flex items-center opacity-90 hover:opacity-100 transition-opacity duration-300">
             <Image src="/NTK.svg" alt="NoTalk" width={42} height={32} priority />
           </a>
@@ -94,6 +109,7 @@ export default function Nav() {
           background: "#050505",
           opacity: open ? 1 : 0,
           pointerEvents: open ? "auto" : "none",
+          overscrollBehavior: "none",
         }}
       >
         <nav className="flex flex-col gap-2 mb-12">
