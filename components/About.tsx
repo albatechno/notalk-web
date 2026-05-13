@@ -14,15 +14,18 @@ export default function About() {
           style={{ borderColor: "rgba(255,255,255,0.08)" }}
         />
 
+        <FadeIn>
+          <p
+            className="text-xs tracking-[0.25em] uppercase mb-10"
+            style={{ color: "#9A9A9A" }}
+          >
+            About
+          </p>
+        </FadeIn>
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
           <div className="md:col-span-4">
             <FadeIn>
-              <p
-                className="text-xs tracking-[0.25em] uppercase mb-6"
-                style={{ color: "#9A9A9A" }}
-              >
-                About
-              </p>
               <h2
                 className="leading-none"
                 style={{
@@ -39,31 +42,32 @@ export default function About() {
             </FadeIn>
           </div>
 
-          <div className="md:col-span-4 md:pt-14">
+          <div className="md:col-span-4">
             <FadeIn delay={120}>
               <p
                 className="text-base md:text-lg font-light leading-relaxed mb-8"
                 style={{ color: "#F2F2F2" }}
               >
-                NoTalk is a techno duo focused on hypnotic movement, mental tension
-                and fast rhythmic structures. Their sound combines ambient layers,
-                detailed textures and driving percussion to build sets that feel
-                immersive, physical and raw.
+                NoTalk was born from a personal union — a musical project where two
+                people's connection finds its purest form. Not a collaboration,
+                but a shared frequency.
               </p>
 
               <p
                 className="text-sm md:text-base leading-relaxed"
                 style={{ color: "#9A9A9A" }}
               >
-                The project exists in the space between repetition and release —
-                where atmosphere becomes rhythm, and rhythm becomes trance.
+                For us, music is the channel where understanding flows without
+                words. Rhythm and atmosphere replace language. What can't be said
+                is felt on the dancefloor — and those who stop to listen will
+                know that some dialogues only happen there.
               </p>
             </FadeIn>
           </div>
 
           <div className="md:col-span-4">
             <FadeIn delay={200}>
-              <ImagePlaceholder seed="press1" width={800} height={1000} className="aspect-[4/5] w-full" />
+              <ImagePlaceholder src="/photos/photo_3.webp" className="aspect-[3/4] w-full" objectPosition="bottom center" />
             </FadeIn>
           </div>
         </div>

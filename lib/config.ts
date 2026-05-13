@@ -1,6 +1,6 @@
 export const LINKS = {
   youtube: "https://www.youtube.com/@notalk8",
-  soundcloud: "https://soundcloud.com/timeless-879656477/seduceme",
+  soundcloud: "https://soundcloud.com/santiago-beltran-alba/tracks",
   bandcamp: "/coming-soon",
   instagram: "https://www.instagram.com/notalk_musik",
   bookingEmail: "notalkcol@gmail.com",
@@ -14,7 +14,7 @@ export const MEMBERS = [
     role: "DJ / Producer",
     bio: "Rooted in hypnotic and mental techno, Alba builds sets defined by tension, layered textures and a relentless forward drive. Her selections move between raw intensity and atmospheric depth.",
     imageSeed: "alba01",
-    image: "/alba.png",
+    image: "/alba.webp",
     links: {
       soundcloud: "https://soundcloud.com/santiago-beltran-alba",
       instagram: "https://www.instagram.com/albassntg",
@@ -26,7 +26,7 @@ export const MEMBERS = [
     role: "DJ / Producer",
     bio: "Die Hexe explores the darker, more hypnotic end of the spectrum — long-form journeys built from dense ambient layers, fast rhythmic structures and a deep sense of sonic ritual.",
     imageSeed: "hexe01",
-    image: "/diehexe.jpeg",
+    image: "/diehexe.webp",
     links: {
       soundcloud: "https://soundcloud.com/die_hexe",
       instagram: "https://www.instagram.com/die.hexe",
