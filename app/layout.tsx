@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Syne, Space_Grotesk } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+import Intro from "@/components/Intro";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -89,6 +91,8 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${syne.variable} ${spaceGrotesk.variable}`}
     >
       <body>
+        <Intro />
+        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

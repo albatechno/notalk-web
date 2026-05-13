@@ -1,4 +1,3 @@
-import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import { LINKS, VIDEO_SETS } from "@/lib/config";
@@ -41,35 +40,15 @@ function VideoCard({
               className="absolute inset-0 w-full h-full"
               loading="lazy"
             />
-          ) : comingSoon ? (
-            <>
-              <Image
-                src={`https://picsum.photos/seed/ntkvid3/1600/900`}
-                alt=""
-                fill
-                className="object-cover grayscale brightness-50 contrast-[1.1]"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p
-                  className="text-xs tracking-[0.25em] uppercase"
-                  style={{ color: "rgba(255,255,255,0.35)" }}
-                >
-                  Coming Soon
-                </p>
-              </div>
-            </>
           ) : (
-            <>
-              <Image
-                src={`https://picsum.photos/seed/ntkvid${index + 1}/1600/900?grayscale`}
-                alt=""
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                style={{ filter: "brightness(0.35) contrast(1.15)" }}
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p
+                className="text-xs tracking-[0.25em] uppercase"
+                style={{ color: "rgba(255,255,255,0.35)" }}
+              >
+                {comingSoon ? "Coming Soon" : "Video Unavailable"}
+              </p>
+            </div>
           )}
         </div>
 

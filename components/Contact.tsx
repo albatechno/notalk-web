@@ -27,8 +27,8 @@ export default function Contact() {
         <FadeIn>
           {/* desktop */}
           <div className="hidden md:grid grid-cols-3 gap-3 mb-20">
-            {[20, 21, 22].map((seed) => (
-              <ImagePlaceholder key={seed} seed={seed} width={1600} height={900} className="aspect-video w-full" />
+            {["/live/live_2.webp", "/live/live_1.webp", "/live/live_3.webp"].map((src) => (
+              <ImagePlaceholder key={src} src={src} className="aspect-video w-full" />
             ))}
           </div>
           {/* mobile horizontal scroll */}
@@ -36,9 +36,9 @@ export default function Contact() {
             className="flex md:hidden gap-3 mb-16 overflow-x-auto"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {[20, 21, 22].map((seed) => (
-              <div key={seed} className="shrink-0 w-[78vw]">
-                <ImagePlaceholder seed={seed} width={1600} height={900} className="aspect-video w-full" />
+            {["/live/live_2.webp", "/live/live_1.webp", "/live/live_3.webp"].map((src) => (
+              <div key={src} className="shrink-0 w-[78vw]">
+                <ImagePlaceholder src={src} className="aspect-video w-full" />
               </div>
             ))}
             <div className="shrink-0 w-6" aria-hidden="true" />
@@ -90,8 +90,8 @@ export default function Contact() {
           <div className="md:col-span-6">
             <FadeIn delay={150}>
               <div className="grid grid-cols-2 gap-3 mb-8">
-                <ImagePlaceholder seed="press2" width={800} height={1067} className="aspect-[3/4] w-full" />
-                <ImagePlaceholder seed="press3" width={800} height={1067} className="aspect-[3/4] w-full" />
+                <ImagePlaceholder src="/photos/photo_1.webp" className="aspect-[3/4] w-full" />
+                <ImagePlaceholder src="/photos/photo_2.webp" className="aspect-[3/4] w-full" />
               </div>
 
               <p

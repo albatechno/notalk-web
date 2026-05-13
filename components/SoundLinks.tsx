@@ -3,9 +3,9 @@ import SectionHeader from "@/components/SectionHeader";
 import { LINKS } from "@/lib/config";
 
 const SC_EMBED =
-  "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/timeless-879656477/seduceme" +
-  "&visual=true&auto_play=false&color=%23ffffff&hide_related=true" +
-  "&show_comments=false&show_user=false&show_reposts=false&show_teaser=false";
+  `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-beltran-alba` +
+  `&visual=true&auto_play=false&color=%23ffffff&hide_related=true` +
+  `&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
 
 export default function SoundLinks() {
   return (
@@ -49,16 +49,18 @@ export default function SoundLinks() {
                   Listen to selected tracks, demos and sonic experiments.
                 </p>
 
-                <iframe
-                  width="100%"
-                  height="200"
-                  scrolling="no"
-                  frameBorder="no"
-                  allow="autoplay"
-                  src={SC_EMBED}
-                  className="w-full"
-                  style={{ border: "none" }}
-                />
+                <div className="w-full overflow-hidden" style={{ height: 166 }}>
+                  <iframe
+                    width="100%"
+                    height="200"
+                    scrolling="no"
+                    frameBorder="no"
+                    allow="autoplay"
+                    src={SC_EMBED}
+                    className="w-full"
+                    style={{ border: "none", marginTop: -2 }}
+                  />
+                </div>
               </div>
 
               <a
@@ -102,9 +104,18 @@ export default function SoundLinks() {
                 >
                   Bandcamp
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#9A9A9A" }}>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: "#9A9A9A" }}>
                   Releases and direct music access coming soon.
                 </p>
+
+                <div
+                  className="w-full"
+                  style={{
+                    height: 166,
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                />
               </div>
 
               <a

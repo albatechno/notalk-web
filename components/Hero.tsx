@@ -5,6 +5,7 @@ import { LINKS } from "@/lib/config";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -64,6 +65,17 @@ export default function Hero() {
     };
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => {
+      if (contentRef.current) {
+        contentRef.current.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+        contentRef.current.style.opacity = `${1 - window.scrollY * 0.0018}`;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
       id="home"
@@ -107,7 +119,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-32 md:py-40">
+      <div ref={contentRef} className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-32 md:py-40">
         <p
           className="text-xs tracking-[0.3em] uppercase mb-6"
           style={{ color: "#9A9A9A" }}
