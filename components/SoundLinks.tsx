@@ -7,6 +7,10 @@ const SC_EMBED =
   `&visual=true&auto_play=false&color=%23ffffff&hide_related=true` +
   `&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
 
+const MC_EMBED =
+  `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=0&light=0` +
+  `&feed=%2Fnotalkmusik%2Fgroove-sessions%2F`;
+
 export default function SoundLinks() {
   return (
     <section
@@ -77,52 +81,47 @@ export default function SoundLinks() {
 
           <FadeIn delay={200}>
             <div
-              className="p-8 md:p-10 flex flex-col justify-between min-h-[280px]"
+              className="p-8 md:p-10 flex flex-col justify-between min-h-[280px] transition-colors duration-300 hover:bg-[#111111]"
               style={{ background: "#0B0B0B" }}
             >
               <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <p
-                    className="text-xs tracking-[0.25em] uppercase"
-                    style={{ color: "#9A9A9A" }}
-                  >
-                    Releases
-                  </p>
-                  <span
-                    className="text-[0.6rem] tracking-[0.2em] uppercase px-2 py-0.5"
-                    style={{
-                      border: "1px solid rgba(255,255,255,0.15)",
-                      color: "#9A9A9A",
-                    }}
-                  >
-                    Soon
-                  </span>
-                </div>
+                <p
+                  className="text-xs tracking-[0.25em] uppercase mb-3"
+                  style={{ color: "#9A9A9A" }}
+                >
+                  Mixes
+                </p>
                 <h3
                   className="text-2xl md:text-3xl font-bold mb-4 tracking-tight"
                   style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
                 >
-                  Bandcamp
+                  Mixcloud
                 </h3>
                 <p className="text-sm leading-relaxed mb-6" style={{ color: "#9A9A9A" }}>
-                  Releases and direct music access coming soon.
+                  Groove Sessions — extended mixes and curated sets.
                 </p>
 
-                <div
-                  className="w-full"
-                  style={{
-                    height: 166,
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                  }}
-                />
+                <div className="w-full overflow-hidden" style={{ height: 166 }}>
+                  <iframe
+                    width="100%"
+                    height="166"
+                    scrolling="no"
+                    frameBorder="no"
+                    allow="autoplay"
+                    src={MC_EMBED}
+                    className="w-full"
+                    style={{ border: "none" }}
+                  />
+                </div>
               </div>
 
               <a
-                href={LINKS.bandcamp}
+                href="https://www.mixcloud.com/notalkmusik/groove-sessions/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 mt-8 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
               >
-                Open Bandcamp
+                Open Mixcloud
                 <span className="block h-px w-6 bg-foreground transition-all duration-300 group-hover:w-10" />
               </a>
             </div>
