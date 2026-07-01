@@ -4,7 +4,7 @@ import { LINKS } from "@/lib/config";
 const SOCIALS = [
   { label: "YouTube", href: LINKS.youtube },
   { label: "SoundCloud", href: LINKS.soundcloud },
-  { label: "Bandcamp", href: LINKS.bandcamp },
+  { label: "Mixcloud", href: LINKS.mixcloud },
   { label: "Instagram", href: LINKS.instagram },
 ];
 

@@ -2,15 +2,16 @@ import FadeIn from "@/components/FadeIn";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import CalendlyModal from "@/components/CalendlyModal";
 import { LINKS } from "@/lib/config";
+import type { Dictionary } from "@/lib/i18n";
 
 const SOCIALS = [
   { label: "YouTube", href: LINKS.youtube },
   { label: "SoundCloud", href: LINKS.soundcloud },
-  { label: "Bandcamp", href: LINKS.bandcamp },
+  { label: "Mixcloud", href: LINKS.mixcloud },
   { label: "Instagram", href: LINKS.instagram },
 ];
 
-export default function Contact() {
+export default function Contact({ dict }: { dict: Dictionary["contact"] }) {
   return (
     <section
       id="contact"
@@ -52,7 +53,7 @@ export default function Contact() {
                 className="text-xs tracking-[0.25em] uppercase mb-6"
                 style={{ color: "#9A9A9A" }}
               >
-                Contact
+                {dict.label}
               </p>
               <h2
                 className="leading-none mb-8"
@@ -63,14 +64,15 @@ export default function Contact() {
                   letterSpacing: "0.01em",
                 }}
               >
-                Bookings
-                <br />& Contact
+                {dict.title1}
+                <br />
+                {dict.title2}
               </h2>
               <p
                 className="text-sm md:text-base leading-relaxed mb-10 max-w-sm"
                 style={{ color: "#9A9A9A" }}
               >
-                For bookings, releases, collaborations or inquiries, contact NoTalk directly.
+                {dict.description}
               </p>
 
               <div className="flex flex-col gap-4">
@@ -82,7 +84,7 @@ export default function Contact() {
                   <span className="block h-px w-8 bg-current transition-all duration-300 group-hover:w-14" />
                 </a>
 
-                <CalendlyModal url={LINKS.calendly} />
+                <CalendlyModal url={LINKS.calendly} label={dict.scheduleCall} />
               </div>
             </FadeIn>
           </div>
@@ -98,7 +100,7 @@ export default function Contact() {
                 className="text-xs tracking-[0.25em] uppercase mb-4"
                 style={{ color: "#9A9A9A" }}
               >
-                Links
+                {dict.linksLabel}
               </p>
               <ul className="flex flex-col gap-3">
                 {SOCIALS.map((s) => (

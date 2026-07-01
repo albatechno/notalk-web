@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export default function CalendlyModal({ url }: { url: string }) {
+export default function CalendlyModal({ url, label }: { url: string; label: string }) {
   useEffect(() => {
     const link = document.createElement("link");
     link.href = "https://assets.calendly.com/assets/external/widget.css";
@@ -37,7 +37,7 @@ export default function CalendlyModal({ url }: { url: string }) {
       onClick={open}
       className="inline-flex items-center px-6 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 border border-foreground text-foreground hover:bg-foreground hover:text-background self-start"
     >
-      Schedule a call
+      {label}
     </button>
   );
 }

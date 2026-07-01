@@ -1,5 +1,6 @@
 import FadeIn from "@/components/FadeIn";
 import { SHOWS } from "@/lib/config";
+import type { Dictionary } from "@/lib/i18n";
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -10,7 +11,7 @@ function formatDate(iso: string) {
   };
 }
 
-export default function Shows() {
+export default function Shows({ dict }: { dict: Dictionary["shows"] }) {
   return (
     <section
       id="shows"
@@ -34,11 +35,11 @@ export default function Shows() {
                 letterSpacing: "0.01em",
               }}
             >
-              Shows
+              {dict.title}
             </h2>
             {SHOWS.length > 0 && (
               <p className="text-xs tracking-[0.2em] uppercase" style={{ color: "#9A9A9A" }}>
-                Upcoming
+                {dict.upcoming}
               </p>
             )}
           </div>
@@ -54,7 +55,7 @@ export default function Shows() {
                 className="text-sm tracking-[0.15em] uppercase"
                 style={{ color: "rgba(255,255,255,0.2)" }}
               >
-                No upcoming shows
+                {dict.noUpcomingShows}
               </p>
             </div>
           </FadeIn>
@@ -114,14 +115,14 @@ export default function Shows() {
                         rel="noopener noreferrer"
                         className="text-xs tracking-[0.2em] uppercase text-muted hover:text-foreground transition-colors duration-300 text-right"
                       >
-                        Tickets
+                        {dict.tickets}
                       </a>
                     ) : (
                       <span
                         className="text-xs tracking-[0.2em] uppercase text-right"
                         style={{ color: "rgba(255,255,255,0.2)" }}
                       >
-                        Free
+                        {dict.free}
                       </span>
                     )}
                   </div>

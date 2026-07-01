@@ -36,12 +36,6 @@ const SITE_URL = "https://notalk.co";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: "NoTalk — Techno Duo",
-    template: "%s — NoTalk",
-  },
-  description:
-    "NoTalk is a DJ and producer duo exploring mental, hypnotic and fast techno through dense rhythms, ambient pressure and immersive sonic structures.",
   keywords: [
     "NoTalk", "techno", "DJ", "producer", "hypnotic techno", "mental techno",
     "Alba", "Die Hexe", "techno duo", "Colombia", "underground techno",
@@ -62,21 +56,6 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
-  },
-  openGraph: {
-    title: "NoTalk — Techno Duo",
-    description:
-      "Mental, hypnotic and fast techno shaped through atmosphere, texture and repetition.",
-    url: SITE_URL,
-    siteName: "NoTalk",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "NoTalk — Techno Duo",
-    description:
-      "Mental, hypnotic and fast techno shaped through atmosphere, texture and repetition.",
   },
 };
 
