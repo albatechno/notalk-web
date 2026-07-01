@@ -3,16 +3,91 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/config";
+import { locales, type Locale, type Dictionary } from "@/lib/i18n";
 
-const NAV_LINKS = [
-  { label: "Sound", href: "#sound" },
-  { label: "Video", href: "#video" },
-  { label: "Booking", href: "#contact" },
-];
+const LANGUAGE_LABELS: Record<Locale, string> = {
+  en: "EN",
+  es: "ES",
+  de: "DE",
+};
 
-export default function Nav() {
+const LANGUAGE_FLAGS: Record<Locale, string> = {
+  en: "/flags/us.svg",
+  es: "/flags/co.svg",
+  de: "/flags/de.svg",
+};
+
+function LangButton({
+  locale,
+  active,
+  onClick,
+  className = "",
+}: {
+  locale: Locale;
+  active: boolean;
+  onClick: () => void;
+  className?: string;
+}) {
+  const [hover, setHover] = useState(false);
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className={`uppercase transition-colors duration-300 ${className}`}
+      style={
+        hover
+          ? {
+              backgroundImage: `url(${LANGUAGE_FLAGS[locale]})`,
+              backgroundSize: "auto 100%",
+              backgroundPosition: "center",
+              backgroundRepeat: "repeat-x",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              fontWeight: active ? 600 : 400,
+            }
+          : {
+              color: active ? "#F2F2F2" : "#9A9A9A",
+              fontWeight: active ? 600 : 400,
+            }
+      }
+    >
+      {LANGUAGE_LABELS[locale]}
+    </button>
+  );
+}
+
+export default function Nav({
+  dict,
+  locale: activeLocale,
+  onSwitchLocale,
+  swapping = false,
+}: {
+  dict: Dictionary["nav"];
+  locale: Locale;
+  onSwitchLocale: (locale: Locale) => void;
+  swapping?: boolean;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const NAV_LINKS = [
+    { label: dict.sound, href: "#sound" },
+    { label: dict.video, href: "#video" },
+    { label: dict.booking, href: "#contact" },
+  ];
+
+  const switchLocale = onSwitchLocale;
+
+  // Match the content blur transition so the nav labels morph in sync.
+  const swapStyle: React.CSSProperties = {
+    filter: swapping ? "blur(6px)" : "blur(0px)",
+    opacity: swapping ? 0.4 : 1,
+    transition:
+      "filter 200ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -55,7 +130,10 @@ export default function Nav() {
           paddingTop: "env(safe-area-inset-top)",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+        <div
+          className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between"
+          style={swapStyle}
+        >
           <a href="#home" onClick={close} className="flex items-center opacity-90 hover:opacity-100 transition-opacity duration-300">
             <Image src="/NTK.svg" alt="NoTalk" width={42} height={32} priority />
           </a>
@@ -77,14 +155,26 @@ export default function Nav() {
               rel="noopener noreferrer"
               className="text-xs tracking-[0.2em] uppercase px-4 py-2 border border-white/20 text-muted hover:border-foreground hover:text-foreground transition-all duration-300"
             >
-              Listen
+              {dict.listen}
             </a>
+
+            <div className="flex items-center gap-1">
+              {locales.map((locale) => (
+                <LangButton
+                  key={locale}
+                  locale={locale}
+                  active={locale === activeLocale}
+                  onClick={() => switchLocale(locale)}
+                  className="text-xs tracking-[0.15em] px-2 py-1"
+                />
+              ))}
+            </div>
           </nav>
 
           {/* Hamburger — mobile only */}
           <button
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? dict.closeMenu : dict.openMenu}
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
           >
             <span
@@ -141,7 +231,7 @@ export default function Nav() {
             onClick={close}
             className="group inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
           >
-            Listen on SoundCloud
+            {dict.listenOnSoundcloud}
             <span className="block h-px w-5 bg-current transition-all duration-300 group-hover:w-9" />
           </a>
           <a
@@ -151,6 +241,21 @@ export default function Nav() {
           >
             {LINKS.bookingEmail}
           </a>
+
+          <div className="flex items-center gap-3 mt-4">
+            {locales.map((locale) => (
+              <LangButton
+                key={locale}
+                locale={locale}
+                active={locale === activeLocale}
+                onClick={() => {
+                  close();
+                  switchLocale(locale);
+                }}
+                className="text-xs tracking-[0.2em] font-medium"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>

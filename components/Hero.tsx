@@ -2,10 +2,22 @@
 
 import { useEffect, useRef } from "react";
 import { LINKS } from "@/lib/config";
+import type { Dictionary } from "@/lib/i18n";
 
-export default function Hero() {
+export default function Hero({
+  dict,
+  swapping = false,
+}: {
+  dict: Dictionary["hero"];
+  swapping?: boolean;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  // Mirror `swapping` in a ref so the animation loop can pause without restarting.
+  const pausedRef = useRef(swapping);
+  useEffect(() => {
+    pausedRef.current = swapping;
+  }, [swapping]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -25,6 +37,13 @@ export default function Hero() {
     window.addEventListener("resize", fit);
 
     const tick = () => {
+      // Freeze the waveform while the language-swap blur plays so the browser
+      // isn't re-rasterizing an animating canvas through a blur filter (janky).
+      if (pausedRef.current) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+
       const w = canvas.width;
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
@@ -124,7 +143,7 @@ export default function Hero() {
           className="text-xs tracking-[0.3em] uppercase mb-6"
           style={{ color: "#9A9A9A" }}
         >
-          Techno / DJs / Producers
+          {dict.eyebrow}
         </p>
 
         {/* 3D perspective container — Plastikman technique */}
@@ -150,14 +169,14 @@ export default function Hero() {
             className="text-lg md:text-xl font-light leading-relaxed mb-4"
             style={{ color: "#F2F2F2" }}
           >
-            Mental, hypnotic and fast techno shaped through atmosphere, texture and repetition.
+            {dict.tagline}
           </p>
 
           <p
             className="text-sm md:text-base leading-relaxed mb-12"
             style={{ color: "#9A9A9A" }}
           >
-            A DJ and producer duo exploring dense rhythms, ambient pressure and immersive sonic structures.
+            {dict.subtext}
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -167,21 +186,21 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center px-7 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 border border-foreground text-foreground hover:bg-foreground hover:text-background"
             >
-              Listen on SoundCloud
+              {dict.listenOnSoundcloud}
             </a>
 
             <a
               href="#video"
               className="inline-flex items-center px-7 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-all duration-300 border border-white/25 text-muted hover:border-foreground hover:text-foreground"
             >
-              Watch Video Sets
+              {dict.watchVideoSets}
             </a>
 
             <a
               href="#contact"
               className="inline-flex items-center px-7 py-3 text-xs tracking-[0.2em] uppercase font-medium transition-colors duration-300 text-muted hover:text-foreground"
             >
-              Booking
+              {dict.booking}
             </a>
           </div>
         </div>

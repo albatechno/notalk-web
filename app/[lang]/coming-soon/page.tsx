@@ -1,10 +1,16 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getDictionary, hasLocale } from "@/lib/i18n";
 
-export const metadata = {
-  title: "Coming Soon — NoTalk",
-};
+export default async function ComingSoon({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const dict = await getDictionary(lang);
 
-export default function ComingSoon() {
   return (
     <main
       className="min-h-screen flex flex-col items-center justify-center px-6"
@@ -20,7 +26,7 @@ export default function ComingSoon() {
           className="text-xs tracking-[0.25em] uppercase mb-6"
           style={{ color: "#9A9A9A" }}
         >
-          NoTalk
+          {dict.comingSoon.eyebrow}
         </p>
 
         <h1
@@ -32,16 +38,16 @@ export default function ComingSoon() {
             letterSpacing: "0.02em",
           }}
         >
-          Coming
+          {dict.comingSoon.title1}
           <br />
-          Soon
+          {dict.comingSoon.title2}
         </h1>
 
         <p
           className="text-sm leading-relaxed mb-12"
           style={{ color: "#9A9A9A", maxWidth: "28rem" }}
         >
-          This is still being set up. Check back soon.
+          {dict.comingSoon.description}
         </p>
 
         <div
@@ -50,11 +56,11 @@ export default function ComingSoon() {
         />
 
         <Link
-          href="/"
+          href={`/${lang}`}
           className="group inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-medium"
           style={{ color: "#F2F2F2" }}
         >
-          Back to site
+          {dict.comingSoon.backToSite}
           <span className="block h-px w-5 bg-current transition-all duration-300 group-hover:w-9" />
         </Link>
       </div>

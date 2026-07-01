@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
 import FadeIn from "@/components/FadeIn";
+import type { Dictionary } from "@/lib/i18n";
 
 const PHOTOS = [
   { id: "1",  src: "/textures/texture_1.webp" },
@@ -15,7 +16,7 @@ const PHOTOS = [
   { id: "8",  src: "/textures/texture_8.webp" },
 ];
 
-export default function Gallery() {
+export default function Gallery({ dict }: { dict: Dictionary["gallery"] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export default function Gallery() {
             className="text-xs tracking-[0.25em] uppercase"
             style={{ color: "#9A9A9A" }}
           >
-            Media
+            {dict.label}
           </p>
         </FadeIn>
       </div>

@@ -1,7 +1,8 @@
 import FadeIn from "@/components/FadeIn";
 import ImagePlaceholder from "@/components/ImagePlaceholder";
+import type { Dictionary } from "@/lib/i18n";
 
-export default function About() {
+export default function About({ dict }: { dict: Dictionary["about"] }) {
   return (
     <section
       id="about"
@@ -19,7 +20,7 @@ export default function About() {
             className="text-xs tracking-[0.25em] uppercase mb-10"
             style={{ color: "#9A9A9A" }}
           >
-            About
+            {dict.label}
           </p>
         </FadeIn>
 
@@ -35,9 +36,9 @@ export default function About() {
                   letterSpacing: "0.01em",
                 }}
               >
-                No Talk.
+                {dict.title1}
                 <br />
-                Just Pressure.
+                {dict.title2}
               </h2>
             </FadeIn>
           </div>
@@ -48,19 +49,14 @@ export default function About() {
                 className="text-base md:text-lg font-light leading-relaxed mb-8"
                 style={{ color: "#F2F2F2" }}
               >
-                NoTalk was born from a personal union — a musical project where two
-                people's connection finds its purest form. Not a collaboration,
-                but a shared frequency.
+                {dict.paragraph1}
               </p>
 
               <p
                 className="text-sm md:text-base leading-relaxed"
                 style={{ color: "#9A9A9A" }}
               >
-                For us, music is the channel where understanding flows without
-                words. Rhythm and atmosphere replace language. What can't be said
-                is felt on the dancefloor — and those who stop to listen will
-                know that some dialogues only happen there.
+                {dict.paragraph2}
               </p>
             </FadeIn>
           </div>

@@ -1,14 +1,18 @@
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { MEMBERS } from "@/lib/config";
+import { MEMBERS, type Member } from "@/lib/config";
+import type { Dictionary } from "@/lib/i18n";
 
 function MemberCard({
   member,
   index,
+  dict,
 }: {
-  member: (typeof MEMBERS)[number];
+  member: Member;
   index: number;
+  dict: Dictionary["members"];
 }) {
+  const bio = dict.bios[member.id];
   const isRight = index % 2 !== 0;
 
   return (
@@ -45,7 +49,7 @@ function MemberCard({
               className="text-xs tracking-[0.2em] uppercase mt-1"
               style={{ color: "rgba(255,255,255,0.5)" }}
             >
-              {member.role}
+              {bio.role}
             </p>
           </div>
         </div>
@@ -67,7 +71,7 @@ function MemberCard({
               className="text-sm md:text-base font-light leading-relaxed"
               style={{ color: "#9A9A9A" }}
             >
-              {member.bio}
+              {bio.bio}
             </p>
           </div>
 
@@ -78,7 +82,7 @@ function MemberCard({
                 {...(member.links.soundcloud.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                 className="group inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
               >
-                SoundCloud
+                {dict.soundcloud}
                 <span className="block h-px w-5 bg-foreground transition-all duration-300 group-hover:w-9" />
               </a>
             )}
@@ -88,7 +92,7 @@ function MemberCard({
                 {...(member.links.instagram.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                 className="group inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-medium text-muted hover:text-foreground transition-colors duration-300"
               >
-                Instagram
+                {dict.instagram}
                 <span className="block h-px w-5 bg-current transition-all duration-300 group-hover:w-9" />
               </a>
             )}
@@ -99,7 +103,7 @@ function MemberCard({
   );
 }
 
-export default function Members() {
+export default function Members({ dict }: { dict: Dictionary["members"] }) {
   return (
     <section
       id="members"
@@ -117,13 +121,13 @@ export default function Members() {
             className="text-xs tracking-[0.25em] uppercase mb-14"
             style={{ color: "#9A9A9A" }}
           >
-            The Duo
+            {dict.label}
           </p>
         </FadeIn>
 
         <div className="flex flex-col gap-px" style={{ background: "rgba(255,255,255,0.08)" }}>
           {MEMBERS.map((member, i) => (
-            <MemberCard key={member.id} member={member} index={i} />
+            <MemberCard key={member.id} member={member} index={i} dict={dict} />
           ))}
         </div>
       </div>

@@ -1,29 +1,10 @@
 import FadeIn from "@/components/FadeIn";
+import type { Dictionary } from "@/lib/i18n";
 
-const BLOCKS = [
-  {
-    number: "01",
-    title: "Mental",
-    description: "Focused repetition, tension and controlled intensity.",
-  },
-  {
-    number: "02",
-    title: "Hypnotic",
-    description: "Long-form movement designed to pull the listener inward.",
-  },
-  {
-    number: "03",
-    title: "Fast",
-    description: "High-energy structures with raw, direct momentum.",
-  },
-  {
-    number: "04",
-    title: "Textural",
-    description: "Ambient layers, noise, pressure and sonic detail.",
-  },
-];
+const NUMBERS = ["01", "02", "03", "04"];
 
-export default function IdentityBlocks() {
+export default function IdentityBlocks({ dict }: { dict: Dictionary["identity"] }) {
+  const BLOCKS = dict.blocks.map((block, i) => ({ ...block, number: NUMBERS[i] }));
   return (
     <section
       className="py-24 md:py-36"
@@ -35,7 +16,7 @@ export default function IdentityBlocks() {
             className="text-xs tracking-[0.25em] uppercase mb-14"
             style={{ color: "#9A9A9A" }}
           >
-            Sound Identity
+            {dict.label}
           </p>
         </FadeIn>
 

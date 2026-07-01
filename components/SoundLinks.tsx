@@ -1,6 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import SectionHeader from "@/components/SectionHeader";
 import { LINKS } from "@/lib/config";
+import type { Dictionary } from "@/lib/i18n";
 
 const SC_EMBED =
   `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/santiago-beltran-alba` +
@@ -9,9 +10,9 @@ const SC_EMBED =
 
 const MC_EMBED =
   `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=0&light=0` +
-  `&feed=%2Fnotalkmusik%2Fgroove-sessions%2F`;
+  `&feed=%2Fnotalkmusik%2Flab-nights%2F`;
 
-export default function SoundLinks() {
+export default function SoundLinks({ dict }: { dict: Dictionary["sound"] }) {
   return (
     <section
       id="sound"
@@ -21,9 +22,9 @@ export default function SoundLinks() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <FadeIn>
           <SectionHeader
-            label="Music"
-            title="Sound"
-            description="Original productions, sketches and sonic explorations from NoTalk."
+            label={dict.label}
+            title={dict.title}
+            description={dict.description}
           />
         </FadeIn>
 
@@ -41,16 +42,16 @@ export default function SoundLinks() {
                   className="text-xs tracking-[0.25em] uppercase mb-3"
                   style={{ color: "#9A9A9A" }}
                 >
-                  Streaming
+                  {dict.streaming}
                 </p>
                 <h3
                   className="text-2xl md:text-3xl font-bold mb-4 tracking-tight"
                   style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
                 >
-                  SoundCloud
+                  {dict.soundcloudTitle}
                 </h3>
                 <p className="text-sm leading-relaxed mb-6" style={{ color: "#9A9A9A" }}>
-                  Listen to selected tracks, demos and sonic experiments.
+                  {dict.soundcloudDescription}
                 </p>
 
                 <div className="w-full overflow-hidden" style={{ height: 166 }}>
@@ -73,7 +74,7 @@ export default function SoundLinks() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 mt-8 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
               >
-                Open SoundCloud
+                {dict.openSoundcloud}
                 <span className="block h-px w-6 bg-foreground transition-all duration-300 group-hover:w-10" />
               </a>
             </div>
@@ -89,16 +90,16 @@ export default function SoundLinks() {
                   className="text-xs tracking-[0.25em] uppercase mb-3"
                   style={{ color: "#9A9A9A" }}
                 >
-                  Mixes
+                  {dict.mixes}
                 </p>
                 <h3
                   className="text-2xl md:text-3xl font-bold mb-4 tracking-tight"
                   style={{ fontFamily: "var(--font-syne)", color: "#F2F2F2" }}
                 >
-                  Mixcloud
+                  {dict.mixcloudTitle}
                 </h3>
                 <p className="text-sm leading-relaxed mb-6" style={{ color: "#9A9A9A" }}>
-                  Groove Sessions — extended mixes and curated sets.
+                  {dict.mixcloudDescription}
                 </p>
 
                 <div className="w-full overflow-hidden" style={{ height: 166 }}>
@@ -116,12 +117,12 @@ export default function SoundLinks() {
               </div>
 
               <a
-                href="https://www.mixcloud.com/notalkmusik/groove-sessions/"
+                href={LINKS.mixcloud}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 mt-8 text-xs tracking-[0.2em] uppercase font-medium text-foreground"
               >
-                Open Mixcloud
+                {dict.openMixcloud}
                 <span className="block h-px w-6 bg-foreground transition-all duration-300 group-hover:w-10" />
               </a>
             </div>
