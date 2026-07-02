@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { dictionaries } from "@/dictionaries";
 import { setLocaleCookie, type Locale } from "@/lib/i18n";
+import LanguageGate from "@/components/LanguageGate";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -21,6 +22,8 @@ const BLUR_MS = 200;
 export default function SiteContent({ initialLang }: { initialLang: Locale }) {
   const [locale, setLocale] = useState<Locale>(initialLang);
   const [swapping, setSwapping] = useState(false);
+  // Ask for the language on every page load / reload.
+  const [showGate, setShowGate] = useState(true);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const dict = dictionaries[locale];
 
@@ -54,6 +57,20 @@ export default function SiteContent({ initialLang }: { initialLang: Locale }) {
     [locale, swapping]
   );
 
+  // Selection from the language gate: swap in place (no reload) and dismiss.
+  const pickLocale = useCallback(
+    (next: Locale) => {
+      setLocaleCookie(next);
+      if (next !== locale) {
+        setLocale(next);
+        const rest = window.location.pathname.replace(/^\/(en|es|de)/, "");
+        window.history.replaceState(null, "", `/${next}${rest}`);
+      }
+      setShowGate(false);
+    },
+    [locale]
+  );
+
   const swapStyle: React.CSSProperties = {
     filter: swapping ? "blur(6px)" : "blur(0px)",
     opacity: swapping ? 0.4 : 1,
@@ -63,6 +80,7 @@ export default function SiteContent({ initialLang }: { initialLang: Locale }) {
 
   return (
     <>
+      {showGate && <LanguageGate onSelect={pickLocale} />}
       <Nav
         dict={dict.nav}
         locale={locale}

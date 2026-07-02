@@ -10,10 +10,18 @@ const OPTIONS: { locale: Locale; label: string; flag: string }[] = [
   { locale: "de", label: "Deutsch", flag: "/flags/de.svg" },
 ];
 
-export default function LanguageGate() {
+export default function LanguageGate({
+  onSelect,
+}: {
+  onSelect?: (locale: Locale) => void;
+}) {
   const router = useRouter();
 
   const choose = (locale: Locale) => {
+    if (onSelect) {
+      onSelect(locale);
+      return;
+    }
     setLocaleCookie(locale);
     router.push(`/${locale}`);
   };
